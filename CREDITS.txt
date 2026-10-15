@@ -1,0 +1,13 @@
+Saiga-12K for Geronimo - credits
+================================
+
+3D model and textures
+  Saiga-12K (with the Sb.5 5-round magazine) from Escape from Tarkov, by Battlestate Games.
+  Exported by the user from their own copy of the game, for personal use only. This plugin is not
+  for distribution: the art ships only inside Saiga12.dll, encrypted, and must not be shared.
+
+Plugin
+  RemArrow - https://github.com/RemArrow
+  Runs on GML, the Geronimo Mod Loader: https://github.com/RemArrow/geronimo-mod-loader
+
+Not affiliated with or endorsed by Battlestate Games, Kalashnikov Concern or Dark Matter Studios.

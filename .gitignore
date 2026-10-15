@@ -1,0 +1,10 @@
+# build output
+build/
+tools/prep/bin/
+tools/prep/obj/
+
+# From the user's own Escape from Tarkov export (personal use only) - never commit
+Assets/
+*.png
+*.gltf
+*.bin
