@@ -1,12 +1,19 @@
-# Saiga-12K for Geronimo (personal use)
+# Saiga-12K for Geronimo
 
 A [GML](https://github.com/RemArrow/geronimo-mod-loader) plugin that adds a **Saiga-12K** to the Shotgun spawner:
 a full-auto 12 gauge firing slugs, with the 5-round Sb.5 magazine. It lives in the gun station's
 **Shotguns** category, which the game ships hidden and the plugin shows. It replaces no game asset.
 
-**Not for distribution.** The model and textures are the Saiga-12K from Escape from Tarkov (Battlestate
-Games), exported from the user's own copy of the game. They live only in `Assets\` (gitignored) and,
-encrypted, inside `Saiga12.dll`. Don't commit, upload or share either.
+The model and textures are the Saiga-12K from Escape from Tarkov, by Battlestate Games, **redistributed with
+Battlestate Games' permission**. They ship encrypted inside `Saiga12.dll` in the release zip. The source art stays
+out of this repository (`Assets\` is gitignored).
+
+## Install
+
+Needs [GML 2.4 or newer](https://github.com/RemArrow/geronimo-mod-loader/releases). Install it from GML Manager's
+Browse tab, or close the game, download `Saiga12-<version>.zip` from
+[Releases](https://github.com/RemArrow/geronimo-saiga-12k/releases) and extract it into
+`...\GERONIMO\Geronimo\Binaries\Win64`. That adds `GML\plugins\Saiga12`.
 
 ## How it works
 
@@ -98,10 +105,9 @@ encrypted, inside `Saiga12.dll`. Don't commit, upload or share either.
   Saiga dressed on both machines, the host's round for the client's shot a slug (28 g, 18.5 mm, 430 m/s,
   the slug curve), and the copy on the client a slug too.
 
-## Build and install
+## Build from source
 
-There is no download: the model comes from your own Escape from Tarkov export and can't be shared. Build it
-from yours. `prep` also needs [retoc](https://github.com/trumank/retoc) and `UAssetParser` from the
+The art is not in this repository, so building needs your own Escape from Tarkov export. `prep` also needs [retoc](https://github.com/trumank/retoc) and `UAssetParser` from the
 [modding toolkit](https://github.com/RemArrow/geronimo-modding-toolkit) in a `Utils` folder next to this one (see `build.bat`).
 
 ```bat
