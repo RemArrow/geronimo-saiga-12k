@@ -1198,6 +1198,53 @@ static void Step() {
                 Object((GUObject*)pg.Class()).Name(), Components(pg, "DynamicMeshComponent").size(), Object((GUObject*)pg.Get<GUClass*>("BulletData")).Name(),
                 pg.GetObj("CurrentMagazine").Get<int32_t>("AmmoCapacity"));
             LogHandle(pg, "loadout gun");
+            s_step = 14;
+            return;
+        }
+        // ---- a stock AK-74M (the Saiga's receiver) saved over the Saiga's slot must load as an AK-74M
+        case 14: {  // picked from the Assault Rifles page, as a player does
+            Params sw(s_widget, "ShowWeapons");
+            sw.Set("Type", (uint8_t)0).Call();
+            s_step = 18; s_wait = 30;
+            return;
+        }
+        case 18: {  // only Shotguns items exist here: point one at the AK-74M and press it (the same selection event)
+            Object ak = FindObject("/Game/Weapons/Data/DA_AK74M.DA_AK74M");
+            Object item = FindFirstOf("WB_CustomizationItemGun_C");
+            if (!ak || !item) { Error("no AK-74M or no menu item"); s_step = 13; return; }
+            Object was = item.GetObj("WeaponItem");
+            item.Set<GUObject*>("WeaponItem", ak.ptr);
+            s_before = s_station.GetObj("CurrentReceiver").ptr;
+            Params press(item, kItemPress);
+            press.Call();
+            item.Set<GUObject*>("WeaponItem", was.ptr);
+            Log("pressed a menu item pointed at '{}'", TextOf(ak, "DisplayName"));
+            s_step = 15; s_wait = 120;
+            return;
+        }
+        case 15: {
+            Object cur = s_station.GetObj("CurrentReceiver");
+            if (!cur || cur.ptr == s_before) {
+                static int tries = 0;
+                if (tries++ == 0) { Params c(s_widget, kConfirm); c.Call(); s_wait = 90; return; }
+                Error("AK-74M did not spawn"); s_step = 13; return;
+            }
+            Log("AK74M spawned {} - Saiga meshes {}", cur.Name(), Components(cur, "DynamicMeshComponent").size());
+            Params sv(s_gear, "SaveGunSetup");
+            sv.SetObj("GunReceiver", cur).Call();
+            s_step = 16; s_wait = 180;
+            return;
+        }
+        case 16: {
+            Params ld(s_gear, "LoadGunSetups");
+            ld.Call();
+            s_step = 17; s_wait = 300;
+            return;
+        }
+        case 17: {
+            Object pg = s_gear.GetObj("PrimaryGun");
+            size_t n = Components(pg, "DynamicMeshComponent").size();
+            Log("AK74M LOADOUT PrimaryGun after load: {} - Saiga meshes {} -> {}", pg.Name(), n, n ? "FAIL (dressed as the Saiga)" : "PASS (an AK-74M)");
             s_step = 13;
             return;
         }

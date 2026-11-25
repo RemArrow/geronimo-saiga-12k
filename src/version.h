@@ -2,8 +2,8 @@
 // version resource (Saiga12.rc).
 #pragma once
 
-#define SAIGA_VERSION_NUM 0, 2, 1, 0
-#define SAIGA_VERSION "0.2.1"
+#define SAIGA_VERSION_NUM 0, 2, 2, 0
+#define SAIGA_VERSION "0.2.2"
 
 #define SAIGA_MODEL_CREDIT                                                                    \
     "3D model and textures: Saiga-12K from Escape from Tarkov by Battlestate Games, "          \

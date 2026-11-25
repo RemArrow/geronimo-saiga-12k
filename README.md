@@ -210,6 +210,10 @@ Not checked by hand in VR: how the Saiga handles and fires in your hands, rackin
 (the test pulls the handle through the game's `SetProgress`), the magazine rock-in (the Sb.5 rides the
 AK-74M magazine's insertion path), muzzle devices and side mounts on it, and multiplayer.
 
+## Loadout fix (0.2.2)
+
+A stock AK-74M shares the Saiga's receiver. 0.2.1 could take a saved AK-74M slot for the Saiga (by its gun entry or a remembered file hash). Now only the Saiga's colour name, which every Saiga carries into its save, marks a Saiga slot. Verified in game: a Saiga saved and reloaded as a Saiga, then a stock AK-74M saved over it reloaded as an AK-74M.
+
 ## Known limitations
 
 - It's an AK-74M underneath: your spare AK-74M magazines become 5-round 12 gauge magazines while you carry a
