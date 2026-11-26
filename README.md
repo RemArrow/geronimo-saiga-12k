@@ -220,3 +220,7 @@ A stock AK-74M shares the Saiga's receiver. 0.2.1 could take a saved AK-74M slot
   Saiga.
 - Repainting the Saiga at the station doesn't stick, because the colour name marks it as a Saiga.
 - The Sb.5 is solid, so the rounds inside aren't drawn.
+
+## Shading fix (0.2.3)
+
+GML builds the plugin's textures at runtime, and the engine always samples those as sRGB. That's right for colour maps, but the normal and ORM maps are linear data. Read as sRGB, normals tilted (up to about 50 degrees on a flat map) and roughness came out far too low (0.55 read as 0.26), so surfaces looked glossy, washed out and wrongly lit. The build now packs a staged copy of `Assets\` with every `*_Normal.png` and `*_ORM.png` sRGB-encoded (`tools\srgb`), so the shader reads back the intended values. `Assets\` itself stays linear.
